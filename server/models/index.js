@@ -44,9 +44,10 @@ db.Sequelize = Sequelize;
 db.syncTablesInOrder = async () => {
   try {
     await db.User.sync({ alter: true });
-    await db.ProfessorsTable.sync({ alter: true });
-    await db.EquipmentTable.sync({ alter: true });
-    await db.BookingTable.sync({ alter: true });
+    await db.Professor.sync({ alter: true });
+    await db.Result.sync({ alter: true });
+    await db.Equipment.sync({ alter: true });
+    await db.Booking.sync({ alter: true });
     console.log('Tables created in order successfully');
   } catch (error) {
     console.error('Error syncing tables:', error);
