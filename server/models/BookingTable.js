@@ -14,14 +14,6 @@ module.exports = (sequelize, DataTypes) => {
           key: 'userId',
         },
       },
-      professorId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-        references: {
-          model: 'Professor',
-          key: 'professorId',
-        },
-      },
       equipmentId: {
         type: DataTypes.UUID,
         allowNull: false,
@@ -43,12 +35,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       bookingStatus: {
-        type: DataTypes.ENUM('Book', 'Booked', 'Public Holiday','Booked for other department','Booked for professor'),
+        type: DataTypes.ENUM('Book', 'Booked', 'Public Holiday','Booked for other department','Booked for professor','Equipment under maintenance'),
         allowNull: false,
-      },
-      numberOfSamples: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: "Book",
       },
       createdAt: {
         type: DataTypes.DATE,
@@ -67,7 +56,6 @@ module.exports = (sequelize, DataTypes) => {
     // Associations
     Booking.associate = models => {
       Booking.belongsTo(models.User, { foreignKey: 'userId', onDelete: 'CASCADE' });
-      Booking.belongsTo(models.Professor, { foreignKey: 'professorId', onDelete: 'CASCADE' });
       Booking.belongsTo(models.Equipment, { foreignKey: 'equipmentId', onDelete: 'CASCADE' });
     };
   

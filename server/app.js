@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./models');
-// const {AllRouters}= require('./Router.js');
+const {AllRouters}= require('./Router.js');
 const dotenv = require('dotenv')
 // require('./utility/scheduler.js')
 dotenv.config();
@@ -16,7 +16,7 @@ app.use(cors({
 
 }))
 
-// app.use('/api',AllRouters)
+app.use('/api',AllRouters)
 
 db.syncTablesInOrder().then(() => {
     app.listen(process.env.PORT, () => {
