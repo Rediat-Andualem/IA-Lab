@@ -1,8 +1,8 @@
 // routes/bookingRoutes.js
 const express = require('express');
-const { getBookings } = require('../Controllers/BookingController');
+const { bookEquipment } = require('../Controllers/BookingController');
 const BookingRouter = express.Router();
 
-BookingRouter.post('/equipmentBookings', getBookings);
+BookingRouter.post('/equipmentBookings', bookEquipment);
 
 module.exports = {BookingRouter};

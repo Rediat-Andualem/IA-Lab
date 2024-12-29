@@ -6,8 +6,6 @@ const dotenv = require('dotenv')
 // require('./utility/scheduler.js')
 dotenv.config();
 const app = express();
-
-
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
 app.use(cors({

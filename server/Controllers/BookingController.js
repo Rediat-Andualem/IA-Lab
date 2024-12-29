@@ -1,7 +1,7 @@
 const { Equipment } = require('../models');
 const { Booking } = require('../models'); // Assuming you have a Booking model
 
-const getBookings = async (req, res) => {
+const bookEquipment = async (req, res) => {
   const { bookings, bookingsCount, equipmentId, userID } = req.body;
 
   try {
@@ -18,7 +18,7 @@ const getBookings = async (req, res) => {
     }
 
     // Prepare booking data
-    const bookingData = bookings.map((booking) => ({
+    const bookingData = bookings?.map((booking) => ({
       userId: userID,
       equipmentId,
       bookedDate: booking.bookingDate,
@@ -37,4 +37,4 @@ const getBookings = async (req, res) => {
   }
 };
 
-module.exports = { getBookings };
+module.exports = { bookEquipment };

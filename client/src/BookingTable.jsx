@@ -183,6 +183,7 @@
 // ------------------------new backend functionality--------------
 import React, { useMemo, useState } from "react";
 import { useTable } from "react-table";
+import {axiosInstance} from './utility/urlInstance'
 import "./BookingTable.css";
 
 function BookingTable({ day, reasonForBlock }) {
@@ -242,9 +243,10 @@ function BookingTable({ day, reasonForBlock }) {
     ]);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!equipmentId) {
       alert("Please select an equipment ID");
+      console.log(equipmentId)
       return;
     }
 
@@ -252,7 +254,7 @@ function BookingTable({ day, reasonForBlock }) {
       alert("No bookings selected!");
       return;
     }
-let userID ="testUserId"
+let userID ="3005e2d5-6a56-4d47-afa1-3cf4e80721bc"
     const payload = {
       equipmentId,
       bookingsCount: bookings.length,
@@ -262,13 +264,16 @@ let userID ="testUserId"
 
     console.log("Submitting booking:", payload);
 
-    fetch("http://www.localhost:4789/api/booking/equipmentBookings", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => response.json())
+  await  axiosInstance.post("/booking/equipmentBookings",
+    { 
+      bookings : payload.bookings, 
+      bookingsCount :payload.bookingsCount, 
+      equipmentId:payload.equipmentId, 
+      userID:payload.userID
+    }
+  )
       .then((data) => {
+        console.log(data)
         alert("Booking submitted successfully!");
         console.log(data);
       })
@@ -304,10 +309,10 @@ let userID ="testUserId"
           value={equipmentId}
         >
           <option value="">Select Equipment</option>
-          <option value="equipment_id1">Equipment 1</option>
-          <option value="equipment_id2">Equipment 2</option>
-          <option value="equipment_id3">Equipment 3</option>
-          <option value="equipment_id4">Equipment 4</option>
+          <option value="3176b9aa-2ee2-4367-8b84-9bcf27e75608">Equipment 1</option>
+          <option value="aa93be17-314a-4d19-8058-63f298b4496a">Equipment 2</option>
+          <option value="b8c4cb43-651e-45b5-a5ad-3542ec7c6e0b">Equipment 3</option>
+     
         </select>
         <table {...getTableProps()}>
           <thead>
