@@ -72,16 +72,16 @@ function BookingTable({ day, reasonForBlock }) {
       return;
     }
 
-    const userID = "3005e2d5-6a56-4d47-afa1-3cf4e80721bc";
+    const userID = "d87dbaf1-5d7a-4063-be81-8aa15f3e0308";
     const payload = {
       equipmentId,
       bookingsCount: bookings.length,
       bookings,
       userID,
     };
-
+console.log(payload)
     try {
-      const response = await axiosInstance.post("/booking/equipmentBookings", payload);
+      const response = await axiosInstance.post("/booking/equipmentBookings", payload);   //http://localhost:4789/api/booking/equipmentBookings
       console.log(response);
       alert("Booking submitted successfully!");
     } catch (error) {
@@ -128,9 +128,9 @@ function BookingTable({ day, reasonForBlock }) {
           value={equipmentId}
         >
           <option value="">Select Equipment</option>
-          <option value="3176b9aa-2ee2-4367-8b84-9bcf27e75608">Equipment 1</option>
-          <option value="aa93be17-314a-4d19-8058-63f298b4496a">Equipment 2</option>
-          <option value="b8c4cb43-651e-45b5-a5ad-3542ec7c6e0b">Equipment 3</option>
+          <option value="0bd93372-5816-4ac5-9891-8aa71451c2c5">Equipment 1</option>
+          <option value="0bd93372-5816-4ac5-9891-8aa71451c2c5">Equipment 2</option>
+          <option value="0bd93372-5816-4ac5-9891-8aa71451c2c5">Equipment 3</option>
         </select>
         <table {...getTableProps()}>
           <thead>
